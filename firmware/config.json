@@ -4,22 +4,22 @@
         { 
           "name": "bootloader.bin", 
           "offset": "0x0000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/bootloader.bin"
+          "path": "./firmware/JT-V0.5.0-sfusion-tuned-mbe/boot_app0.bin"
         },
         { 
           "name": "partitions.bin", 
           "offset": "0x8000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/partitions.bin"
+          "path": "./firmware/JT-V0.5.0-sfusion-tuned-mbe/partitions.bin"
         },
         {
           "name": "boot_app0.bin", 
           "offset": "0xe000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/boot_app0.bin"
+          "path": "./firmware/JT-V0.5.0-sfusion-tuned-mbe/boot_app0.bin"
         },
         {
           "name": "firmware.bin",
           "offset": "0x10000", 
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/firmware.bin"
+          "path": "./firmware/JT-V0.5.0-sfusion-tuned-mbe/firmware.bin"
         }
       ]
     },
@@ -28,22 +28,22 @@
         { 
           "name": "bootloader.bin", 
           "offset": "0x0000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/bootloader.bin"
+          "path": "./firmware/JT-V0.5.0_MainFW/bootloader.bin"
         },
         { 
           "name": "partitions.bin", 
           "offset": "0x8000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/partitions.bin"
+          "path": "./firmware/JT-V0.5.0_MainFW/partitions.bin"
         },
         {
           "name": "boot_app0.bin", 
           "offset": "0xe000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/boot_app0.bin"
+          "path": "./firmware/JT-V0.5.0_MainFW/boot_app0.bin"
         },
         {
           "name": "firmware.bin",
           "offset": "0x10000", 
-          "path": "./Firmware/JT-V0.5.0_MainFW/firmware.bin"
+          "path": "./firmware/JT-V0.5.0_MainFW/firmware.bin"
         }
       ]
     }
