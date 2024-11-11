@@ -33,7 +33,7 @@ const fw_URL = "https://github.com/YozoraKurage/YozoLab-ESPTool-fwbuilder/blob/m
 // JSONファイルを読み込む関数
 async function loadFirmwareConfig() {
   try {
-    const response = await fetch('fw_URL');
+    const response = await fetch(fw_URL);
     if (!response.ok) {
       throw new Error('設定ファイルの読み込みに失敗しました');
     }
