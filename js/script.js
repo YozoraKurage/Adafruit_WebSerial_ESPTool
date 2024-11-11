@@ -28,12 +28,10 @@ const firmware = document.querySelectorAll(".upload .firmware input");
 // グローバル変数の定義
 let firmwareVersions = {};
 
-const fw_URL = "https://github.com/YozoraKurage/YozoLab-ESPTool-fwbuilder/blob/main/config.json";
-
 // JSONファイルを読み込む関数
 async function loadFirmwareConfig() {
   try {
-    const response = await fetch(fw_URL);
+    const response = await fetch('./firmware/config.json');
     if (!response.ok) {
       throw new Error('設定ファイルの読み込みに失敗しました');
     }
