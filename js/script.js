@@ -28,10 +28,49 @@ const firmware = document.querySelectorAll(".upload .firmware input");
 // グローバル変数の定義
 let firmwareVersions = {};
 
+const DEFAULT_CONFIG_PATH = './firmware/config.json';
+let currentConfigUrl = DEFAULT_CONFIG_PATH;
+
+// configUrl入力とボタンのイベントハンドラー設定
+document.getElementById('loadConfig').addEventListener('click', async () => {
+  const urlInput = document.getElementById('configUrl');
+  const customUrl = urlInput.value.trim();
+  
+  // URLが空欄の場合はエラーメッセージを表示
+  if (!customUrl) {
+    logMsg('URLが入力されていません。URLを入力するか、空欄の場合はデフォルトの設定が使用されます。');
+    currentConfigUrl = DEFAULT_CONFIG_PATH;
+  } else {
+    currentConfigUrl = customUrl;
+  }
+  
+  await loadFirmwareConfig();
+});
+
+// binファイルの存在チェック関数を追加
+function checkBinFilesComplete() {
+  const firmware = document.querySelectorAll(".upload .firmware input");
+  const allFilesPresent = Array.from(firmware).every(input => input.files.length > 0);
+  
+  // Programボタンの取得と有効/無効の切り替え
+  const programButton = document.getElementById("butProgram");
+  programButton.disabled = !allFilesPresent;
+  
+  if (!allFilesPresent) {
+    logMsg("すべての.binファイルをアップロードしてください。");
+  }
+  return allFilesPresent;
+}
+
+// ファイル選択時のイベントリスナーを追加
+document.querySelectorAll(".upload .firmware input").forEach(input => {
+  input.addEventListener("change", checkBinFilesComplete);
+});
+
 // JSONファイルを読み込む関数
 async function loadFirmwareConfig() {
   try {
-    const response = await fetch('./firmware/config.json');
+    const response = await fetch(currentConfigUrl);
     if (!response.ok) {
       throw new Error('設定ファイルの読み込みに失敗しました');
     }
@@ -44,9 +83,15 @@ async function loadFirmwareConfig() {
     Object.entries(firmwareVersions).forEach(([key, fw]) => {
       const option = document.createElement('option');
       option.value = key;
-      option.textContent = key;  // nameプロパティの代わりにkeyを使用
+      option.textContent = key;
       select.appendChild(option);
     });
+    
+    // 初期状態でボタンを無効化
+    const programButton = document.getElementById("butProgram");
+    programButton.disabled = true;
+    
+    logMsg('ファームウェア設定を正常に読み込みました');
   } catch (error) {
     console.error('設定ファイルの読み込みエラー:', error);
     logMsg('ファームウェア設定の読み込みに失敗しました');
